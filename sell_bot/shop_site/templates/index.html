@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <style>
+        body {
+            background-color: #000;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, .1);
+            display: flex;
+            color: #fff;
+            height: 50px;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .product-row {
+            display: flex;
+            flex-wrap: wrap; /* Разрешает перенос на новую строку */
+            justify-content: space-between; /* Равномерное распределение между колонками */
+            padding: 20px;
+        }
+
+        .product-container {
+            width: 48%; /* Установите ширину колонки товаров по вашему желанию */
+            margin-bottom: 20px; /* Расстояние между колонками */
+        }
+
+        .product {
+            background-color: rgba(255, 255, 255, .2);
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://avatars.mds.yandex.net/i?id=bda7a1d05a94c4f55623dc90c7cfd429c5a84fc1-9244694-images-thumbs&n=13" style="width: 40px; margin-left: 10px; margin-right: 10px; border-radius: 30px;">
+        <h1>TYTIN SHOP</h1>
+    </header>
+
+    <div class="product-row">
+        {% for product in products %}
+        <div class="product-container">
+            <div class="product">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+                <h2>{{ product.name }}</h2>
+                <p>Цена: {{ product.price }}тг</p>
+            </div>
+        </div>
+        {% if loop.index % 2 == 0 %}
+        <div style="clear: both;"></div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>
